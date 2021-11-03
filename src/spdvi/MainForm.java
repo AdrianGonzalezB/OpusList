@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -37,6 +38,7 @@ public class MainForm extends javax.swing.JFrame {
     private JList<Obras> lstObras;
     private JFileChooser fileChooser;
     final static File imagesFolder = new File(System.getProperty("user.home") + "\\AppData\\Local\\OpusList\\images\\");
+    final static String images = (System.getProperty("user.home") + "\\AppData\\Local\\OpusList\\images\\");
     File[] listOfFiles = imagesFolder.listFiles();
    
     /**
@@ -66,6 +68,7 @@ public class MainForm extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         btnLoad = new javax.swing.JButton();
         btnInsert = new javax.swing.JButton();
+        lblImage = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         mnuExit = new javax.swing.JMenu();
@@ -152,18 +155,25 @@ public class MainForm extends javax.swing.JFrame {
                         .addComponent(btnLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(84, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLoad)
-                    .addComponent(btnInsert))
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(156, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnLoad)
+                            .addComponent(btnInsert))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -241,6 +251,28 @@ public class MainForm extends javax.swing.JFrame {
     
     private void lstUsersValueChanged(ListSelectionEvent evt) {
         Obras selectedObra = lstObras.getSelectedValue();
+        if (selectedObra != null) {
+            for (Obras o: obras) {
+                if (o.getRegistre().equals(selectedObra.getRegistre())) {
+                    try {
+                        BufferedImage bufferedImage;
+                        if (o.getimatge()== (null)) {
+                            bufferedImage = ImageIO.read(getClass().getResource(images + 1)); 
+                        }
+                        else {
+                            String imagePath = images + o.getimatge();
+                            bufferedImage = ImageIO.read(new File(imagePath));
+                        }
+                        ImageIcon icon = resizeImageIcon(bufferedImage, lblImage.getWidth(), lblImage.getHeight());
+                        lblImage.setIcon(icon);
+                        
+                    }
+                    catch (IOException ioe) {
+                        ioe.printStackTrace();
+                    }
+                }
+            }            
+        }
     }
     /**
      * @param args the command line arguments
@@ -285,6 +317,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblImage;
     private javax.swing.JMenuItem mnuDelete;
     private javax.swing.JMenu mnuExit;
     private javax.swing.JMenuItem mnuInsert;
