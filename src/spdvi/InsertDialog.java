@@ -10,7 +10,6 @@ package spdvi;
  * @author Alumne
  */
 public class InsertDialog extends javax.swing.JDialog {
-
     /**
      * Creates new form Insert
      */

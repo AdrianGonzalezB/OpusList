@@ -41,10 +41,6 @@ public class MainForm extends javax.swing.JFrame {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 lstUsersValueChanged(evt);
             }
-
-            private void lstUsersValueChanged(ListSelectionEvent evt) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
         });
     }
 
@@ -116,6 +112,11 @@ public class MainForm extends javax.swing.JFrame {
         jMenu1.add(mnuUpdate);
 
         mnuDelete.setText("Delete");
+        mnuDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuDeleteActionPerformed(evt);
+            }
+        });
         jMenu1.add(mnuDelete);
 
         jMenuBar1.add(jMenu1);
@@ -163,16 +164,23 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoadActionPerformed
 
     private void mnuInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuInsertActionPerformed
-        // TODO add your handling code here:
+        InsertDialog insertDialog = new InsertDialog(this, true);
+            insertDialog.setVisible(true);
     }//GEN-LAST:event_mnuInsertActionPerformed
 
     private void mnuReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuReadActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_mnuReadActionPerformed
 
     private void mnuUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuUpdateActionPerformed
-        // TODO add your handling code here:
+        UpdateDialog updateDialog = new UpdateDialog(this, true);
+        updateDialog.setVisible(true);
     }//GEN-LAST:event_mnuUpdateActionPerformed
+
+    private void mnuDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDeleteActionPerformed
+        DeleteDialog deleteDialog = new DeleteDialog(this, true);
+        deleteDialog.setVisible(true);
+    }//GEN-LAST:event_mnuDeleteActionPerformed
 
     private void UpdateObrasListView() {
         DefaultListModel<Obras> usersListModel = new DefaultListModel<Obras>();
@@ -180,6 +188,10 @@ public class MainForm extends javax.swing.JFrame {
             usersListModel.addElement(o);
         }
         lstObras.setModel(usersListModel);      
+    }
+    
+    private void lstUsersValueChanged(ListSelectionEvent evt) {
+        Obras selectedObra = lstObras.getSelectedValue();
     }
     /**
      * @param args the command line arguments
