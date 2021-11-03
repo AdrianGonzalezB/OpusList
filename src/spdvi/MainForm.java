@@ -204,7 +204,7 @@ public class MainForm extends javax.swing.JFrame {
         try (Writer writer = new FileWriter(System.getProperty("user.home") + "\\AppData\\Local\\OpusList\\data\\obres.json")) {
         Gson gson = new GsonBuilder().create();
         gson.toJson(obras, writer);
-}       catch (IOException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
         }
         UpdateObrasListView();
