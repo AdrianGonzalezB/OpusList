@@ -36,7 +36,6 @@ public class MainForm extends javax.swing.JFrame {
   
     ArrayList<Obras> obras = new ArrayList<Obras>();
     private JList<Obras> lstObras;
-    private JFileChooser fileChooser;
     final static File imagesFolder = new File(System.getProperty("user.home") + "\\AppData\\Local\\OpusList\\images\\");
     final static String images = (System.getProperty("user.home") + "\\AppData\\Local\\OpusList\\images\\");
     File[] listOfFiles = imagesFolder.listFiles();
@@ -324,4 +323,5 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuRead;
     private javax.swing.JMenuItem mnuUpdate;
     // End of variables declaration//GEN-END:variables
+
 }
