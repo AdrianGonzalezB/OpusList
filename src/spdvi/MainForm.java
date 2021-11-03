@@ -10,6 +10,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -21,6 +23,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JList;
 import javax.swing.event.ListSelectionEvent;
@@ -216,6 +219,25 @@ public class MainForm extends javax.swing.JFrame {
             usersListModel.addElement(o);
         }
         lstObras.setModel(usersListModel);      
+    }
+    
+    private ImageIcon resizeImageIcon (BufferedImage originalImage, int desiredWidth, int desiredHeight) {
+        int newHeight = 0;    
+        int newWidth = 0;
+        float aspectRatio = (float)originalImage.getWidth() / originalImage.getHeight();
+        if (originalImage.getWidth() > originalImage.getHeight()) {
+            newWidth = desiredWidth;
+            newHeight = Math.round( desiredWidth / aspectRatio);                
+        }
+        else {
+            newHeight = desiredHeight;
+            newWidth = Math.round(desiredHeight * aspectRatio);
+        }
+        Image resultingImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        BufferedImage outputImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_RGB);
+        outputImage.getGraphics().drawImage(resultingImage, 0, 0, null);
+        ImageIcon imageIcon = new ImageIcon(outputImage);
+        return imageIcon;
     }
     
     private void lstUsersValueChanged(ListSelectionEvent evt) {
