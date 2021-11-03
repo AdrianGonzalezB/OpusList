@@ -50,15 +50,25 @@ public class Obras {
         this.autor = autor;
     }
     
+    public String getimatge() {
+        return imatge;
+    }
+
+    public void setimatge(String imatge) {
+        this.imatge = imatge;
+    }
+    
     private String registre;
     private String titol;
     private String any;
     private String format;
     private String autor;
-    private String image;
+    private String imatge;
 
     @Override
     public String toString() {
-        return registre + ": " + titol + ", " + any + " (" + format + "). " + autor + ", " + image; 
+        return registre + ": " + titol + ", " + any + " (" + format + "). " + autor + ", " + imatge; 
     }
+
+    
 }
