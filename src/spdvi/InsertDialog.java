@@ -13,10 +13,13 @@ public class InsertDialog extends javax.swing.JDialog {
     /**
      * Creates new form Insert
      */
+    private final MainForm mainform = (MainForm) this.getParent();
     public InsertDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

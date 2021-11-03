@@ -55,9 +55,10 @@ public class Obras {
     private String any;
     private String format;
     private String autor;
+    private String image;
 
     @Override
     public String toString() {
-        return registre + ": " + titol + ", " + any + " (" + format + "). " + autor; 
+        return registre + ": " + titol + ", " + any + " (" + format + "). " + autor + ", " + image; 
     }
 }
