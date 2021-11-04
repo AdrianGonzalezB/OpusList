@@ -10,13 +10,14 @@ package spdvi;
  * @author Alumne
  */
 public class UpdateDialog extends javax.swing.JDialog {
-
+    private final MainForm mainform;
     /**
      * Creates new form Update
      */
     public UpdateDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        mainform = (MainForm) this.getParent();
     }
 
     /**
@@ -38,7 +39,7 @@ public class UpdateDialog extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 322, Short.MAX_VALUE)
         );
 
         pack();

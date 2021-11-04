@@ -10,6 +10,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import java.awt.Image;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -35,10 +36,11 @@ import javax.swing.event.ListSelectionEvent;
 public class MainForm extends javax.swing.JFrame {
   
     ArrayList<Obras> obras = new ArrayList<Obras>();
-    private JList<Obras> lstObras;
+    JList<Obras> lstObras;
     final static File imagesFolder = new File(System.getProperty("user.home") + "\\AppData\\Local\\OpusList\\images\\");
     final static String images = (System.getProperty("user.home") + "\\AppData\\Local\\OpusList\\images\\");
     File[] listOfFiles = imagesFolder.listFiles();
+    private boolean confirmSave = false;
    
     /**
      * Creates new form MainForm
@@ -70,7 +72,7 @@ public class MainForm extends javax.swing.JFrame {
         lblImage = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
-        mnuExit = new javax.swing.JMenu();
+        mnuExit = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         mnuInsert = new javax.swing.JMenuItem();
         mnuRead = new javax.swing.JMenuItem();
@@ -100,6 +102,11 @@ public class MainForm extends javax.swing.JFrame {
         jMenu2.setText("File");
 
         mnuExit.setText("Exit");
+        mnuExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuExitActionPerformed(evt);
+            }
+        });
         jMenu2.add(mnuExit);
 
         jMenuBar1.add(jMenu2);
@@ -179,7 +186,20 @@ public class MainForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    public boolean isConfirmSave() {
+        return confirmSave;
+    }
+
+    public void setConfirmSave(boolean confirmSave) {
+        this.confirmSave = confirmSave;
+    }
+    
     private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
+        loadFile();
+    }//GEN-LAST:event_btnLoadActionPerformed
+
+    public void loadFile()  {
         Gson gson = new Gson();
         try {
             JsonReader reader = new JsonReader(new FileReader(System.getProperty("user.home") + "\\AppData\\Local\\OpusList\\data\\obres.json"));
@@ -190,8 +210,7 @@ public class MainForm extends javax.swing.JFrame {
         catch (FileNotFoundException fnfe) {
             fnfe.printStackTrace();
         }
-    }//GEN-LAST:event_btnLoadActionPerformed
-
+    }
     private void mnuInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuInsertActionPerformed
         InsertDialog insertDialog = new InsertDialog(this, true);
             insertDialog.setVisible(true);
@@ -221,6 +240,10 @@ public class MainForm extends javax.swing.JFrame {
         UpdateObrasListView();
     }//GEN-LAST:event_btnInsertActionPerformed
 
+    private void mnuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuExitActionPerformed
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+    }//GEN-LAST:event_mnuExitActionPerformed
+
     public void UpdateObrasListView() {
         DefaultListModel<Obras> usersListModel = new DefaultListModel<Obras>();
         for(Obras o: obras) {
@@ -248,7 +271,7 @@ public class MainForm extends javax.swing.JFrame {
         return imageIcon;
     }
     
-    private void lstObrasValueChanged(ListSelectionEvent evt) {
+    void lstObrasValueChanged(ListSelectionEvent evt) {
         Obras selectedObra = lstObras.getSelectedValue();
         if (selectedObra != null) {
             for (Obras o: obras) {
@@ -318,7 +341,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblImage;
     private javax.swing.JMenuItem mnuDelete;
-    private javax.swing.JMenu mnuExit;
+    private javax.swing.JMenuItem mnuExit;
     private javax.swing.JMenuItem mnuInsert;
     private javax.swing.JMenuItem mnuRead;
     private javax.swing.JMenuItem mnuUpdate;
