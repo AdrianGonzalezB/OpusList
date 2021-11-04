@@ -246,6 +246,7 @@ public class MainForm extends javax.swing.JFrame {
     }
     private void mnuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuExitActionPerformed
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+        Save();
     }//GEN-LAST:event_mnuExitActionPerformed
 
     public void UpdateObrasListView() {

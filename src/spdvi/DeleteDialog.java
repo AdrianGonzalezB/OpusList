@@ -6,9 +6,8 @@
 package spdvi;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
-import javax.swing.JList;
+
 
 /**
  *
@@ -60,21 +59,21 @@ public class DeleteDialog extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(153, 153, 153)
-                .addComponent(btnDelete)
-                .addContainerGap(234, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(208, 208, 208)
+                .addComponent(btnDelete)
+                .addGap(0, 229, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(164, 164, 164)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
                 .addComponent(btnDelete)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addGap(45, 45, 45))
         );
 
         pack();
@@ -85,8 +84,8 @@ public class DeleteDialog extends javax.swing.JDialog {
         mainform.obras.remove(selectedObra);
         mainform.UpdateObrasListView();
         mainform.lstObras.setSelectedIndex(0);
-        
         mainform.lstObras.validate();
+        UpdateObrasComboView();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -97,11 +96,11 @@ public class DeleteDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowOpened
 
     public void UpdateObrasComboView() {
-        DefaultComboBoxModel<Obras> usersListModel = new DefaultComboBoxModel<Obras>();
+        DefaultComboBoxModel<Obras> ObrasModel = new DefaultComboBoxModel<Obras>();
         for(Obras o: mainform.obras) {
-            usersListModel.addElement(o);
+            ObrasModel.addElement(o);
         }
-        cbObras.setModel(usersListModel);      
+        cbObras.setModel(ObrasModel);      
     }
     
     /**
