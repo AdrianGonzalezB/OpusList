@@ -91,7 +91,7 @@ public class MainForm extends javax.swing.JFrame {
 
         jMenu2.setText("File");
 
-        mnuExit.setText("Exit");
+        mnuExit.setText("Exit & Save");
         mnuExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuExitActionPerformed(evt);
