@@ -23,7 +23,6 @@ public class InsertDialog extends javax.swing.JDialog {
     /**
      * Creates new form Insert
      */
-    private final String destino = (System.getProperty("user.home") + "\\AppData\\Local\\OpusList\\data\\obres.json");
     private final MainForm mainform;
     private JFileChooser fileChooser;
     public InsertDialog(java.awt.Frame parent, boolean modal) {
