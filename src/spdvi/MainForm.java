@@ -25,7 +25,6 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JList;
 import javax.swing.event.ListSelectionEvent;
 
@@ -49,6 +48,7 @@ public class MainForm extends javax.swing.JFrame {
         initComponents();
         lstObras = new JList<Obras>();
         jScrollPane1.setViewportView(lstObras);
+        loadFile();
         lstObras.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 lstObrasValueChanged(evt);

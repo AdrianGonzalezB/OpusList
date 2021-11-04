@@ -5,6 +5,9 @@
  */
 package spdvi;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.JComboBox;
 import javax.swing.JList;
 
 /**
@@ -13,6 +16,7 @@ import javax.swing.JList;
  */
 public class DeleteDialog extends javax.swing.JDialog {
     private final MainForm mainform;
+    JComboBox<Obras> cbObras;
     /**
      * Creates new form DeleteDialog
      */
@@ -20,13 +24,9 @@ public class DeleteDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         mainform = (MainForm) this.getParent();
-        mainform.lstObras = new JList<Obras>();
-        jScrollPane1.setViewportView(mainform.lstObras);
-        mainform.lstObras.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                mainform.lstObrasValueChanged(evt);
-            }
-        });
+        cbObras = new JComboBox<Obras>();
+        jScrollPane1.setViewportView(cbObras);
+        
     }
 
     /**
@@ -38,12 +38,15 @@ public class DeleteDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
         btnDelete = new javax.swing.JButton();
-        btnCancel = new javax.swing.JButton();
-        btnLoad = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -52,60 +55,55 @@ public class DeleteDialog extends javax.swing.JDialog {
             }
         });
 
-        btnCancel.setText("Cancel");
-
-        btnLoad.setText("Load");
-        btnLoad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoadActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(153, 153, 153)
                 .addComponent(btnDelete)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                .addComponent(btnLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
-                .addComponent(btnCancel)
-                .addGap(42, 42, 42))
+                .addContainerGap(234, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDelete)
-                    .addComponent(btnCancel)
-                    .addComponent(btnLoad))
-                .addGap(30, 30, 30))
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(164, 164, 164)
+                .addComponent(btnDelete)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
-        mainform.loadFile();
-    }//GEN-LAST:event_btnLoadActionPerformed
-
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        Obras selectedObra = mainform.lstObras.getSelectedValue();
+        Obras selectedObra = (Obras) cbObras.getSelectedItem();
         mainform.obras.remove(selectedObra);
         mainform.UpdateObrasListView();
         mainform.lstObras.setSelectedIndex(0);
+        
         mainform.lstObras.validate();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        for (Obras o : mainform.obras) {
+            cbObras.addItem(o);
+        }
+        UpdateObrasComboView();
+    }//GEN-LAST:event_formWindowOpened
+
+    public void UpdateObrasComboView() {
+        DefaultComboBoxModel<Obras> usersListModel = new DefaultComboBoxModel<Obras>();
+        for(Obras o: mainform.obras) {
+            usersListModel.addElement(o);
+        }
+        cbObras.setModel(usersListModel);      
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -149,9 +147,7 @@ public class DeleteDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnLoad;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
