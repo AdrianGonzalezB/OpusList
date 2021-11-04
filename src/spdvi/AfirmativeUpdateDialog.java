@@ -279,6 +279,7 @@ public class AfirmativeUpdateDialog extends javax.swing.JDialog {
                 txtAny.setText(o.getAny());
                 txtAutor.setText(o.getAutor());
                 txtFormat.setText(o.getFormat());
+                txtImage.setText(o.getimatge());
                 try {
                     BufferedImage selectedImage;
                     if(o.getimatge() != null) {
