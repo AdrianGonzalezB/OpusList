@@ -10,6 +10,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -56,8 +58,22 @@ public class MainForm extends javax.swing.JFrame {
                 lstObrasValueChanged(evt);
             }
         });
+        lstObras.addMouseListener(new MouseAdapter() {
+        public void mouseClicked(MouseEvent evt) {
+                if (evt.getClickCount() == 2) {
+                   mouseClickOpus(evt);
+                }
+            }
+        });
     }
 
+    public void mouseClickOpus(java.awt.event.MouseEvent e) {
+        if(e.getClickCount() == 2){
+            AfirmativeUpdateDialog aup = new AfirmativeUpdateDialog(this, true);
+            registro = lstObras.getSelectedValue().getRegistre();
+            aup.setVisible(true);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
