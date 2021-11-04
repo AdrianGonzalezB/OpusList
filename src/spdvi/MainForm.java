@@ -40,6 +40,8 @@ public class MainForm extends javax.swing.JFrame {
     final static String images = (System.getProperty("user.home") + "\\AppData\\Local\\OpusList\\images\\");
     File[] listOfFiles = imagesFolder.listFiles();
     private boolean confirmSave = false;
+    UpdateDialog update;
+    String registro;
    
     /**
      * Creates new form MainForm
@@ -82,6 +84,11 @@ public class MainForm extends javax.swing.JFrame {
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jScrollPane1.setToolTipText("");
 
@@ -221,8 +228,8 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuReadActionPerformed
 
     private void mnuUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuUpdateActionPerformed
-        UpdateDialog updateDialog = new UpdateDialog(this, true);
-        updateDialog.setVisible(true);
+        update = new UpdateDialog(this, true);
+        update.setVisible(true);
     }//GEN-LAST:event_mnuUpdateActionPerformed
 
     private void mnuDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDeleteActionPerformed
@@ -231,11 +238,9 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuDeleteActionPerformed
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
-        Save();
         UpdateObrasListView();
     }//GEN-LAST:event_btnInsertActionPerformed
 
-    
     private void Save() {
         try (Writer writer = new FileWriter(System.getProperty("user.home") + "\\AppData\\Local\\OpusList\\data\\obres.json")) {
         Gson gson = new GsonBuilder().create();
@@ -246,8 +251,14 @@ public class MainForm extends javax.swing.JFrame {
     }
     private void mnuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuExitActionPerformed
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-        Save();
     }//GEN-LAST:event_mnuExitActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        ConfirmSaveDialog saveDialog = new ConfirmSaveDialog(this, true);
+        saveDialog.setVisible(true);
+        if (confirmSave)
+            Save();
+    }//GEN-LAST:event_formWindowClosing
 
     public void UpdateObrasListView() {
         DefaultListModel<Obras> usersListModel = new DefaultListModel<Obras>();
