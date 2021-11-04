@@ -49,7 +49,7 @@ public class MainForm extends javax.swing.JFrame {
         jScrollPane1.setViewportView(lstObras);
         lstObras.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                lstUsersValueChanged(evt);
+                lstObrasValueChanged(evt);
             }
         });
     }
@@ -221,7 +221,7 @@ public class MainForm extends javax.swing.JFrame {
         UpdateObrasListView();
     }//GEN-LAST:event_btnInsertActionPerformed
 
-    private void UpdateObrasListView() {
+    public void UpdateObrasListView() {
         DefaultListModel<Obras> usersListModel = new DefaultListModel<Obras>();
         for(Obras o: obras) {
             usersListModel.addElement(o);
@@ -248,7 +248,7 @@ public class MainForm extends javax.swing.JFrame {
         return imageIcon;
     }
     
-    private void lstUsersValueChanged(ListSelectionEvent evt) {
+    private void lstObrasValueChanged(ListSelectionEvent evt) {
         Obras selectedObra = lstObras.getSelectedValue();
         if (selectedObra != null) {
             for (Obras o: obras) {

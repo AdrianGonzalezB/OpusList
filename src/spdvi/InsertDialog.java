@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
+
 /**
  *
  * @author Alumne
@@ -22,6 +23,7 @@ public class InsertDialog extends javax.swing.JDialog {
     /**
      * Creates new form Insert
      */
+    private final String destino = (System.getProperty("user.home") + "\\AppData\\Local\\OpusList\\data\\obres.json");
     private final MainForm mainform;
     private JFileChooser fileChooser;
     public InsertDialog(java.awt.Frame parent, boolean modal) {
@@ -225,6 +227,7 @@ public class InsertDialog extends javax.swing.JDialog {
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
         Obras obraNueva = new Obras (txtRegistre.getText(), txtTitol.getText(), txtAny.getText(), txtFormat.getText(), txtAutor.getText(), txtImage.getText());
         mainform.obras.add(obraNueva);
+        mainform.UpdateObrasListView();
         this.setVisible(false);
     }//GEN-LAST:event_btnInsertActionPerformed
 
@@ -234,15 +237,19 @@ public class InsertDialog extends javax.swing.JDialog {
 
     private void btnLoadImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadImageActionPerformed
         fileChooser = new JFileChooser();
+        String userFolder = System.getProperty("user.home");
         int result = fileChooser.showOpenDialog(this);
         String nombre = fileChooser.getSelectedFile().getName();
         if (result == JFileChooser.APPROVE_OPTION) {
             BufferedImage bufferedImage;
             try {
                 bufferedImage = ImageIO.read(new File(fileChooser.getSelectedFile().getAbsolutePath()));
+                String outputImageAbsolutePath = userFolder + "\\AppData\\Local\\OpusList\\images\\" + fileChooser.getSelectedFile().getName();
                 ImageIcon icon = mainform.resizeImageIcon(bufferedImage, lblImagePath.getWidth(), lblImagePath.getHeight());
                 lblImagePath.setIcon(icon);
                 txtImage.setText(nombre);
+                File outputImage = new File(outputImageAbsolutePath);
+                ImageIO.write(bufferedImage, "jpg", outputImage);
             } catch (IOException ex) {
                 Logger.getLogger(InsertDialog.class.getName()).log(Level.SEVERE, null, ex);
             }
