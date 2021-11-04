@@ -231,15 +231,19 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuDeleteActionPerformed
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
+        Save();
+        UpdateObrasListView();
+    }//GEN-LAST:event_btnInsertActionPerformed
+
+    
+    private void Save() {
         try (Writer writer = new FileWriter(System.getProperty("user.home") + "\\AppData\\Local\\OpusList\\data\\obres.json")) {
         Gson gson = new GsonBuilder().create();
         gson.toJson(obras, writer);
         } catch (IOException ex) {
             Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        UpdateObrasListView();
-    }//GEN-LAST:event_btnInsertActionPerformed
-
+    }
     private void mnuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuExitActionPerformed
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_mnuExitActionPerformed
