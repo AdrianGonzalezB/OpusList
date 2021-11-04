@@ -11,9 +11,15 @@ package spdvi;
  */
 public class Obras {
 
-    Obras(String text, String text0, String text1, String text2, String text3, String text4) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Obras(String registre, String titol, String any, String format, String autor, String imatge) {
+        this.registre = registre;
+        this.titol = titol;
+        this.any = any;
+        this.format = format;
+        this.autor = autor;
+        this.imatge = imatge;
     }
+   
     public String getRegistre() {
         return registre;
     }

@@ -229,7 +229,7 @@ public class MainForm extends javax.swing.JFrame {
         lstObras.setModel(usersListModel);      
     }
     
-    private ImageIcon resizeImageIcon (BufferedImage originalImage, int desiredWidth, int desiredHeight) {
+    ImageIcon resizeImageIcon (BufferedImage originalImage, int desiredWidth, int desiredHeight) {
         int newHeight = 0;    
         int newWidth = 0;
         float aspectRatio = (float)originalImage.getWidth() / originalImage.getHeight();

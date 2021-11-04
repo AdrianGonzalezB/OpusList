@@ -5,6 +5,13 @@
  */
 package spdvi;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
 /**
@@ -227,9 +234,25 @@ public class InsertDialog extends javax.swing.JDialog {
 
     private void btnLoadImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadImageActionPerformed
         fileChooser = new JFileChooser();
+        int result = fileChooser.showOpenDialog(this);
+        String nombre = fileChooser.getSelectedFile().getName();
+        if (result == JFileChooser.APPROVE_OPTION) {
+            BufferedImage bufferedImage;
+            try {
+                bufferedImage = ImageIO.read(new File(fileChooser.getSelectedFile().getAbsolutePath()));
+                ImageIcon icon = mainform.resizeImageIcon(bufferedImage, lblImagePath.getWidth(), lblImagePath.getHeight());
+                lblImagePath.setIcon(icon);
+                txtImage.setText(nombre);
+            } catch (IOException ex) {
+                Logger.getLogger(InsertDialog.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+        
+        /*fileChooser = new JFileChooser();
         int returnOption = fileChooser.showOpenDialog(this);
         if (returnOption == JFileChooser.APPROVE_OPTION)
-            lblImagePath.setText(fileChooser.getSelectedFile().getAbsolutePath());
+            lblImagePath.setText(fileChooser.getSelectedFile().getAbsolutePath());*/
     }//GEN-LAST:event_btnLoadImageActionPerformed
 
     /**
