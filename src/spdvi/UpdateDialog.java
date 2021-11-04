@@ -86,6 +86,8 @@ public class UpdateDialog extends javax.swing.JDialog {
                 return;
             } else {
                 eud.setVisible(true);
+                
+                return;
             }
         }
     }//GEN-LAST:event_btnInsertActionPerformed

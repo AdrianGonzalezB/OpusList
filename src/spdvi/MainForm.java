@@ -69,15 +69,12 @@ public class MainForm extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
-        btnLoad = new javax.swing.JButton();
-        btnInsert = new javax.swing.JButton();
         lblImage = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         mnuExit = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         mnuInsert = new javax.swing.JMenuItem();
-        mnuRead = new javax.swing.JMenuItem();
         mnuUpdate = new javax.swing.JMenuItem();
         mnuDelete = new javax.swing.JMenuItem();
 
@@ -91,20 +88,6 @@ public class MainForm extends javax.swing.JFrame {
         });
 
         jScrollPane1.setToolTipText("");
-
-        btnLoad.setText("Load");
-        btnLoad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoadActionPerformed(evt);
-            }
-        });
-
-        btnInsert.setText("Insert");
-        btnInsert.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInsertActionPerformed(evt);
-            }
-        });
 
         jMenu2.setText("File");
 
@@ -127,14 +110,6 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
         jMenu1.add(mnuInsert);
-
-        mnuRead.setText("Read");
-        mnuRead.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuReadActionPerformed(evt);
-            }
-        });
-        jMenu1.add(mnuRead);
 
         mnuUpdate.setText("Update");
         mnuUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -165,27 +140,16 @@ public class MainForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(156, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnLoad)
-                            .addComponent(btnInsert))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap()
+                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -202,10 +166,6 @@ public class MainForm extends javax.swing.JFrame {
         this.confirmSave = confirmSave;
     }
     
-    private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
-        loadFile();
-    }//GEN-LAST:event_btnLoadActionPerformed
-
     public void loadFile()  {
         Gson gson = new Gson();
         try {
@@ -223,10 +183,6 @@ public class MainForm extends javax.swing.JFrame {
             insertDialog.setVisible(true);
     }//GEN-LAST:event_mnuInsertActionPerformed
 
-    private void mnuReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuReadActionPerformed
-        
-    }//GEN-LAST:event_mnuReadActionPerformed
-
     private void mnuUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuUpdateActionPerformed
         update = new UpdateDialog(this, true);
         update.setVisible(true);
@@ -236,10 +192,6 @@ public class MainForm extends javax.swing.JFrame {
         DeleteDialog deleteDialog = new DeleteDialog(this, true);
         deleteDialog.setVisible(true);
     }//GEN-LAST:event_mnuDeleteActionPerformed
-
-    private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
-        UpdateObrasListView();
-    }//GEN-LAST:event_btnInsertActionPerformed
 
     private void Save() {
         try (Writer writer = new FileWriter(System.getProperty("user.home") + "\\AppData\\Local\\OpusList\\data\\obres.json")) {
@@ -348,8 +300,6 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnInsert;
-    private javax.swing.JButton btnLoad;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -359,7 +309,6 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuDelete;
     private javax.swing.JMenuItem mnuExit;
     private javax.swing.JMenuItem mnuInsert;
-    private javax.swing.JMenuItem mnuRead;
     private javax.swing.JMenuItem mnuUpdate;
     // End of variables declaration//GEN-END:variables
 

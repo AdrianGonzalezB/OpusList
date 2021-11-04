@@ -285,7 +285,6 @@ public class AfirmativeUpdateDialog extends javax.swing.JDialog {
                         selectedImage = ImageIO.read(new File(System.getProperty("user.home") + "\\AppData\\Local\\OpusList\\images\\" + o.getimatge()));
                         lblImagePath.setIcon(mainform.resizeImageIcon(selectedImage, lblImagePath.getWidth(),lblImagePath.getHeight()));
                     }
-                    
                 } catch (IOException ex) {
                     Logger.getLogger(AfirmativeUpdateDialog.class.getName()).log(Level.SEVERE, null, ex);
                 }
