@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
@@ -236,7 +235,7 @@ public class AfirmativeUpdateDialog extends javax.swing.JDialog {
         fileChooser = new JFileChooser();
         String userFolder = System.getProperty("user.home");
         int result = fileChooser.showOpenDialog(this);
-        String nombre = fileChooser.getSelectedFile().getName();
+        
         if (result == JFileChooser.APPROVE_OPTION) {
             BufferedImage bufferedImage;
             try {
@@ -244,6 +243,7 @@ public class AfirmativeUpdateDialog extends javax.swing.JDialog {
                 String outputImageAbsolutePath = userFolder + "\\AppData\\Local\\OpusList\\images\\" + fileChooser.getSelectedFile().getName();
                 ImageIcon icon = mainform.resizeImageIcon(bufferedImage, lblImagePath.getWidth(), lblImagePath.getHeight());
                 lblImagePath.setIcon(icon);
+                String nombre = fileChooser.getSelectedFile().getName();
                 txtImage.setText(nombre);
                 File outputImage = new File(outputImageAbsolutePath);
                 ImageIO.write(bufferedImage, "jpg", outputImage);
