@@ -238,23 +238,25 @@ public class InsertDialog extends javax.swing.JDialog {
         fileChooser = new JFileChooser();
         String userFolder = System.getProperty("user.home");
         int result = fileChooser.showOpenDialog(this);
-        String nombre = fileChooser.getSelectedFile().getName();
+        
+        
+        
         if (result == JFileChooser.APPROVE_OPTION) {
             BufferedImage bufferedImage;
             try {
+                
                 bufferedImage = ImageIO.read(new File(fileChooser.getSelectedFile().getAbsolutePath()));
                 String outputImageAbsolutePath = userFolder + "\\AppData\\Local\\OpusList\\images\\" + fileChooser.getSelectedFile().getName();
                 ImageIcon icon = mainform.resizeImageIcon(bufferedImage, lblImagePath.getWidth(), lblImagePath.getHeight());
                 lblImagePath.setIcon(icon);
+                String nombre = fileChooser.getSelectedFile().getName() ;
                 txtImage.setText(nombre);
                 File outputImage = new File(outputImageAbsolutePath);
                 ImageIO.write(bufferedImage, "jpg", outputImage);
             } catch (IOException ex) {
                 Logger.getLogger(InsertDialog.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
+            }            
         }
-        
         /*fileChooser = new JFileChooser();
         int returnOption = fileChooser.showOpenDialog(this);
         if (returnOption == JFileChooser.APPROVE_OPTION)
