@@ -238,9 +238,7 @@ public class InsertDialog extends javax.swing.JDialog {
         fileChooser = new JFileChooser();
         String userFolder = System.getProperty("user.home");
         int result = fileChooser.showOpenDialog(this);
-        
-        
-        
+
         if (result == JFileChooser.APPROVE_OPTION) {
             BufferedImage bufferedImage;
             try {
@@ -257,10 +255,6 @@ public class InsertDialog extends javax.swing.JDialog {
                 Logger.getLogger(InsertDialog.class.getName()).log(Level.SEVERE, null, ex);
             }            
         }
-        /*fileChooser = new JFileChooser();
-        int returnOption = fileChooser.showOpenDialog(this);
-        if (returnOption == JFileChooser.APPROVE_OPTION)
-            lblImagePath.setText(fileChooser.getSelectedFile().getAbsolutePath());*/
     }//GEN-LAST:event_btnLoadImageActionPerformed
 
     /**
