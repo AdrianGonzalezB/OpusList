@@ -79,17 +79,18 @@ public class UpdateDialog extends javax.swing.JDialog {
         mainform.registro = txtRegistro.getText();
         AfirmativeUpdateDialog dialog = new  AfirmativeUpdateDialog(mainform, true);
         ErrorUpdateDialog eud = new ErrorUpdateDialog(mainform, true);
+        Boolean exists = false;
         for (Obras o: mainform.obras) {
             if (o.getRegistre().equals(mainform.registro)) {
-                eud.setVisible(false);
-                dialog.setVisible(true);
-                return;
-            } else {
-                eud.setVisible(true);
-                
-                return;
+                exists = true;
             }
         }
+        if (exists) {
+                eud.setVisible(false);
+                dialog.setVisible(true);
+            } else {
+                eud.setVisible(true);
+            }
     }//GEN-LAST:event_btnInsertActionPerformed
 
     /**
