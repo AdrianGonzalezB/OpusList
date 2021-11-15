@@ -3,8 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Alumne/Documents/GitHub/Obras/src/spdvi/UpdateDialog.java</file>
-            <file>file:/C:/Users/Alumne/Documents/GitHub/Obras/src/spdvi/InsertDialog.java</file>
+            <file>file:/C:/Users/Adrian/Documents/GitHub/OpusList/src/spdvi/MainForm.java</file>
+            <file>file:/C:/Users/Adrian/Documents/GitHub/OpusList/src/spdvi/ErrorUpdateDialog.java</file>
+            <file>file:/C:/Users/Adrian/Documents/GitHub/OpusList/src/spdvi/AfirmativeUpdateDialog.java</file>
+            <file>file:/C:/Users/Adrian/Documents/GitHub/OpusList/src/spdvi/InsertDialog.java</file>
+            <file>file:/C:/Users/Adrian/Documents/GitHub/OpusList/src/spdvi/UpdateDialog.java</file>
+            <file>file:/C:/Users/Adrian/Documents/GitHub/OpusList/src/spdvi/DeleteDialog.java</file>
+            <file>file:/C:/Users/Adrian/Documents/GitHub/OpusList/src/spdvi/ConfirmSaveDialog.java</file>
         </group>
     </open-files>
 </project-private>
