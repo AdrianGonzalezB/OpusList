@@ -22,3 +22,8 @@ Se debe incluir un menu con las opciones Insert new opus, Update opus, Delete Op
 
 POJO
 Serializar & Deserializar JSON
+
+
+# Installation instrucctions
+Go to the /dist folder, download the OpusList.jar to your matchine and 
+double click on it.
