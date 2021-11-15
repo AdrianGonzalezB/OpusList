@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -224,9 +225,17 @@ public class InsertDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_txtAutorActionPerformed
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
-        Obras obraNueva = new Obras (txtRegistre.getText(), txtTitol.getText(), txtAny.getText(), txtFormat.getText(), txtAutor.getText(), txtImage.getText());
-        mainform.obras.add(obraNueva);
-        mainform.UpdateObrasListView();
+       for (Obras o : mainform.obras) {
+           if (txtRegistre.getText().equals(o.getRegistre())){
+               JOptionPane.showMessageDialog(this, "Error: an obra with register code " + txtRegistre.getText() + " already exists.");
+               return;
+           }
+           else {
+                Obras obraNueva = new Obras (txtRegistre.getText(), txtTitol.getText(), txtAny.getText(), txtFormat.getText(), txtAutor.getText(), txtImage.getText());
+                mainform.obras.add(obraNueva);
+                mainform.UpdateObrasListView();
+           }
+       }
         this.setVisible(false);
     }//GEN-LAST:event_btnInsertActionPerformed
 
