@@ -230,6 +230,7 @@ public class InsertDialog extends javax.swing.JDialog {
                JOptionPane.showMessageDialog(this, "Error: an obra with register code " + txtRegistre.getText() + " already exists.");
                return;
            }
+           
            else {
                 Obras obraNueva = new Obras (txtRegistre.getText(), txtTitol.getText(), txtAny.getText(), txtFormat.getText(), txtAutor.getText(), txtImage.getText());
                 mainform.obras.add(obraNueva);

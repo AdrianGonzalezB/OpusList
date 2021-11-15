@@ -275,6 +275,7 @@ public class AfirmativeUpdateDialog extends javax.swing.JDialog {
         for (Obras o: mainform.obras) {
             if(o.getRegistre().equals(mainform.registro) ) {
                 txtRegistre.setText(o.getRegistre());
+                txtRegistre.setEnabled(false);
                 txtTitol.setText(o.getTitol());
                 txtAny.setText(o.getAny());
                 txtAutor.setText(o.getAutor());
